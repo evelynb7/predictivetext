@@ -33,7 +33,7 @@
 .custom .reveal h6,
 .custom .reveal p {
   color: #39445c;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .custom .reveal strong {

@@ -24,39 +24,25 @@ shinyServer(function(input, output, session) {
    predict_text(input$sentence)
   })
   
-  # Get the prediction results from "results()" on click of button
-  predictions <- eventReactive(input$get,{
-    predict_text(input$sentence)
-  })
-  
-  # On "Get suggestions" button click and change in input sentence, uncheck check box
-  observe({
-    input$get
-    input$sentence
-    updateCheckboxInput(session, "check", label = "Show plots", value = FALSE)
-  })
-  
-  
+
   # Display the predicted next words
   output$suggestions <- renderText({
-   if(grepl("^\\s*$", input$sentence)){ # check for empty string or whitespaces
-      "Enter a word or phrase to get word suggestions!"
-    }else{
-      myresults <- predictions() # because this is event reactive on button click
+    
+      myresults <- results()#predictions() # because this is event reactive on button click
       myresults <- myresults$last
       if("i" %in% myresults){
         myresults <- replace(myresults, myresults == "i", "I") # capitalize the letter "I"
         myresults <- paste(myresults, collapse = ", ")
       }else{
         myresults <- paste(myresults, collapse = ", ")
-      }
+      
     }
   })
   
   
   # Render plots 
   output$plot <- renderPlot({
-    statsDT <- predictions()
+    statsDT <- results() #predictions()
     
     # Probabilities  
     if(ncol(statsDT) == 5){
@@ -111,19 +97,7 @@ shinyServer(function(input, output, session) {
       checkboxInput("check", label = "Show plots")
     })
   
-  # Control for "Get Suggestions" button
-  output$iget <- renderUI({
-    if(is.null(input$sentence)){
-      return()
-    }else if(grepl("^\\s*$", input$sentence) != TRUE){
-      actionButton("get", "Get suggestions")
-    }else{
-      return()
-    }
-    
-  })
-  
-  
+
   ### END INPUT ###
   
   ### OUTPUT ###
@@ -137,12 +111,9 @@ shinyServer(function(input, output, session) {
   
   # Label "Suggestions"
   output$ilabel <- renderUI({
-    
     if(is.null(input$sentence)){
       return()
-    }else if(grepl("^\\s*$", input$sentence) == TRUE){
-      return() #"Suggestions" if != TRUE
-    }else if(!is.null(predictions())){
+    }else if(!is.null(results())){ #predictions()
       "Suggestions"
     }else{
       return()

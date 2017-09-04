@@ -28,8 +28,7 @@ shinyUI(navbarPage("Predictive Text",
                                     condition = "output.ilabel",
                                     uiOutput("icheck")
                                   ),
-                                  uiOutput("iget"),
-                                  tags$br()
+                                 tags$br()
                                 ), # end sidebaPanel
                                 mainPanel(
                                   h3(uiOutput("idisplay")),

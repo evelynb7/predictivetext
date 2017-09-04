@@ -14,7 +14,7 @@ As more people are spending increasing amounts of time on their mobile devices f
 
 ## The Application
 
-The application takes in an input of any length and provides the top 5 predictions based on the context of the last 1 to 3 words depending on the observation matches in the dictionary. The default base for predictions is the last 3 words of the input sentence, supplemented by predictions from the last 2 and 1 if the default is unable to provide all 5 predictions.
+The application takes in an input of any length and provides the top 5 predictions based on the context of the last 3 to 1 words depending on the observation matches in the dictionary. The default base for predictions is the last 3 words of the input, supplemented by predictions from the last 2 and 1 if the default is unable to provide all 5 predictions.
 
 The user may also choose to view the predictions by context probabilities and compare them with raw frequency counts of word occurances in the dictionary. For the input "<b >Keep calm and carry</b>" in the example below, the top prediction is "<b>on</b>" by probability. The outcome contrasts with the prediction of "<b>out</b>" if simple frequency counts were used instead.
 
