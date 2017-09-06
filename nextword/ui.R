@@ -13,11 +13,6 @@ library(shinythemes)
 # Define UI for application that calculates diamond price estimates
 shinyUI(navbarPage("Predictive Text",
                    theme = shinytheme("spacelab"),#("simplex"),
-                   tabPanel("Introduction",
-                     fluidPage(
-                       mainPanel(withMathJax(includeMarkdown("intronextword.md")), width = 10)
-                     ) # end fluidPage
-                   ), # end tabPanel "Introduction"
                    tabPanel("Application",
                             fluidPage(
                               titlePanel("Predictive Text"),
@@ -44,6 +39,11 @@ shinyUI(navbarPage("Predictive Text",
                               ) # end sidebarLayout
                             ) # end fluidPage
                    ), #end tabPanel "Next Word"
-                   tabPanel(HTML("<li><a href=\"http://github.com/evelynb7/predictivetext\" target=\"_blank\">Code"))
+                   tabPanel("About",
+                            fluidPage(
+                              mainPanel(withMathJax(includeMarkdown("intronextword.md")), width = 10)
+                            ) # end fluidPage
+                   ) # end tabPanel "Introduction"
+                   #tabPanel(HTML("<li><a href=\"http://github.com/evelynb7/predictivetext\" target=\"_blank\">Code"))
 ) # end navbarPage
 ) # end ShinyUI

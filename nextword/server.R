@@ -32,9 +32,12 @@ shinyServer(function(input, output, session) {
       myresults <- myresults$last
       if("i" %in% myresults){
         myresults <- replace(myresults, myresults == "i", "I") # capitalize the letter "I"
-        myresults <- paste(myresults, collapse = ", ")
+        myresults <- paste(myresults, collapse = " | ")
+      }else if(grepl("^\\s*$", input$sentence) == TRUE){
+        myresults <- stringi::stri_trans_totitle(myresults)
+        myresults <- paste(myresults, collapse = " | ")
       }else{
-        myresults <- paste(myresults, collapse = ", ")
+        myresults <- paste(myresults, collapse = " | ")
       
     }
   })
